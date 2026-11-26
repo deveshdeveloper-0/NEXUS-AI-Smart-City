@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXUS AI | Smart City Digital Twin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">N</span><div><b>NEXUS AI</b><small>SMART CITY INTELLIGENCE</small></div></div>
+    <div class="live"><i></i> DEMO SYSTEM ONLINE</div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">AUTONOMOUS MULTI-AGENT INTELLIGENCE</p><h1>Smart City <span>Digital Twin</span></h1>
+      <p class="muted">A prototype for city monitoring, transparent analysis and decision support.</p></div>
+      <div class="data-tag">SYNTHETIC DEMO DATA</div>
+    </section>
+    <section class="metrics" id="metrics"><div class="loading">Loading city indicators…</div></section>
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">CITY TELEMETRY</p><h2>Indicator Trends</h2></div><span class="pill">7 sample points</span></div>
+        <div class="chart-wrap"><canvas id="trend" width="760" height="250"></canvas></div>
+        <div class="legend"><span><i class="cyan"></i> Traffic index</span><span><i class="violet"></i> AQI (scaled)</span></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">SYSTEM OVERVIEW</p><h2>City Status</h2></div></div>
+        <div class="city-visual"><div class="orbit"></div><div class="city-icon">⌂</div><div class="city-caption">NEXUS DEMO CITY<small>Digital twin preview</small></div></div>
+        <p class="muted small">This visual represents a prototype dashboard, not a live geospatial twin.</p>
+      </article>
+    </section>
+    <section class="panel agent-panel">
+      <div class="panel-head"><div><p class="eyebrow">COORDINATED ANALYSIS</p><h2>Multi-Agent Intelligence</h2></div>
+        <button id="analyze">Run City Analysis ↗</button></div>
+      <div id="analysis" class="agent-list"><p class="muted">Run the analysis to view agent findings.</p></div>
+    </section>
+    <footer> NEXUS AI · Hackathon prototype · Synthetic data clearly identified · Human review required</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
