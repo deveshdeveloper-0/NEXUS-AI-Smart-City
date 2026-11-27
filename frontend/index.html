@@ -9,14 +9,43 @@
 <body>
   <header class="topbar">
     <div class="brand"><span class="logo">N</span><div><b>NEXUS AI</b><small>SMART CITY INTELLIGENCE</small></div></div>
-    <div class="live"><i></i> DEMO SYSTEM ONLINE</div>
+    <div id="api-connection" class="live"><i></i> BACKEND API CHECKING</div>
   </header>
   <main>
     <section class="intro">
       <div><p class="eyebrow">AUTONOMOUS MULTI-AGENT INTELLIGENCE</p><h1>Smart City <span>Digital Twin</span></h1>
       <p class="muted">A prototype for city monitoring, transparent analysis and decision support.</p></div>
-      <div class="data-tag">SYNTHETIC DEMO DATA</div>
     </section>
+    <nav class="mode-switch" aria-label="Dashboard data mode">
+      <button id="demo-mode-button" class="mode-button active" type="button" aria-pressed="true">Demo Dashboard</button>
+      <button id="live-mode-button" class="mode-button" type="button" aria-pressed="false">Live City Data</button>
+    </nav>
+    <section id="live-mode-content" class="panel live-panel" hidden>
+      <div class="panel-head"><div><p class="eyebrow">EXTERNAL PROVIDER DATA</p><h2>Live City Data</h2></div>
+        <div class="live-controls"><label for="live-city">City</label><select id="live-city"><option>Loading cities…</option></select>
+          <button id="refresh-live" type="button">Refresh Live Data</button></div></div>
+      <p id="live-api-status" class="muted small" aria-live="polite">Checking backend connection…</p>
+      <div id="provider-status" class="provider-list"></div>
+      <p id="live-overall-status" class="muted small" aria-live="polite">Live metrics load when you select a city or refresh.</p>
+      <div class="live-grid">
+        <article class="live-card"><h3>Air Quality</h3><div id="live-aqi"><p class="muted">Select a city to request AQI data.</p></div></article>
+        <article class="live-card"><h3>Weather</h3><div id="live-weather"><p class="muted">Select a city to request weather data.</p></div></article>
+        <article class="live-card"><h3>Energy</h3><div id="live-energy"><p class="muted">Energy availability is checked by the backend.</p></div></article>
+        <article class="live-card"><h3>City-Wide Traffic</h3><div id="live-city-traffic"><p class="muted">No city-wide traffic feed is configured.</p></div></article>
+      </div>
+      <article class="live-card route-card">
+        <h3>Route-Level Traffic ETA</h3>
+        <p class="muted small">A route estimate is not a city-wide traffic measurement.</p>
+        <form id="route-form" class="route-form">
+          <label>Origin <input id="route-origin" name="origin" required minlength="2" maxlength="256" autocomplete="street-address"></label>
+          <label>Destination <input id="route-destination" name="destination" required minlength="2" maxlength="256" autocomplete="street-address"></label>
+          <button type="submit">Get Route ETA</button>
+        </form>
+        <div id="route-result" aria-live="polite"><p class="muted">Route provider status will be shown after a request.</p></div>
+      </article>
+    </section>
+    <div id="demo-mode-content">
+    <p class="data-tag demo-banner">SYNTHETIC DEMO DATA — NOT LIVE CITY MEASUREMENTS</p>
     <section class="metrics" id="metrics"><div class="loading">Loading city indicators…</div></section>
     <section class="grid">
       <article class="panel">
@@ -31,10 +60,17 @@
       </article>
     </section>
     <section class="panel agent-panel">
-      <div class="panel-head"><div><p class="eyebrow">COORDINATED ANALYSIS</p><h2>Multi-Agent Intelligence</h2></div>
-        <button id="analyze">Run City Analysis ↗</button></div>
-      <div id="analysis" class="agent-list"><p class="muted">Run the analysis to view agent findings.</p></div>
+      <div class="panel-head"><div><p class="eyebrow">COORDINATED ANALYSIS</p><h2>Multi-Agent Control Panel</h2></div>
+        <button id="run-agents">Run All Agents ↗</button></div>
+      <p id="execution-message" class="muted small" aria-live="polite">Agents are idle. Run the workflow to analyze current indicators.</p>
+      <h3 class="section-label">Agent Status</h3>
+      <div id="agent-status" class="agent-list" aria-live="polite"><p class="muted">Loading agent status…</p></div>
+      <h3 class="section-label">Individual Agent Results</h3>
+      <div id="agent-results" class="agent-list"><p class="muted">Run all agents to view results.</p></div>
+      <h3 class="section-label">Combined Intelligence Report</h3>
+      <div id="combined-report" class="report-box"><p class="muted">The coordinated report will appear here after execution.</p></div>
     </section>
+    </div>
     <footer> NEXUS AI · Hackathon prototype · Synthetic data clearly identified · Human review required</footer>
   </main>
   <script src="/app.js"></script>

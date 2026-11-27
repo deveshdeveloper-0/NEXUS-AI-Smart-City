@@ -16,6 +16,7 @@ DEMO_CITY = {
 def get_dashboard():
     return {
         **DEMO_CITY,
+        "data_type": "DEMO_DATA",
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "indicators": [
             {"name": "Traffic", "value": DEMO_CITY["traffic_index"], "unit": "/100"},
@@ -72,6 +73,7 @@ def analyze_city():
     alerts = sum(1 for item in agents if item["status"] == "alert")
     return {
         "data_mode": "synthetic_demo",
+        "data_type": "DEMO_DATA",
         "method": "transparent rule-based analysis (not a trained predictive model)",
         "summary": f"{alerts} high-priority alert(s) identified from the demo indicators.",
         "agents": agents,
